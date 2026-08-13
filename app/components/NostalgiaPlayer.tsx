@@ -13,6 +13,7 @@ import {
   BookOpen,
   Flame,
   Flag,
+  X,
 } from "lucide-react";
 
 // --- Global YouTube API Declaration ---
@@ -172,17 +173,25 @@ function TransportControls({
           title="Choose Story Track"
         >
           <ListMusic className="h-3.5 w-3.5 text-amber-300" />
-          <span className="hidden sm:inline">গল্প বাছাই</span>
+          <span className="text-[11px] font-semibold sm:text-xs">গল্প বাছাই</span>
         </button>
 
-        {/* Floating Music / Golpo Choice Dropdown */}
+        {/* Floating Music / Golpo Choice Dropdown - Responsive bounds for mobile */}
         {showTrackMenu && (
-          <div className="absolute left-0 sm:right-0 sm:left-auto bottom-full mb-2 z-50 flex flex-col gap-2 rounded-2xl border border-white/15 bg-black/90 p-2.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.9)] w-[calc(100vw-3rem)] sm:w-72 max-w-72 text-xs animate-in fade-in slide-in-from-bottom-2">
+          <div className="fixed sm:absolute left-3 right-3 sm:left-auto sm:right-0 bottom-24 sm:bottom-full mb-2 z-50 flex flex-col gap-2 rounded-2xl border border-white/20 bg-black/95 sm:bg-black/90 p-3 backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.95)] max-w-sm sm:w-72 mx-auto text-xs animate-in fade-in slide-in-from-bottom-2 max-h-[60vh] overflow-hidden">
             <div className="flex items-center justify-between px-1 py-1 border-b border-white/10 font-bold text-amber-300 text-[11px]">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 <BookOpen className="h-3.5 w-3.5 text-amber-400" />
                 <span>পছন্দের গল্প নির্বাচন করুন</span>
               </div>
+              <button
+                type="button"
+                onClick={() => setShowTrackMenu(false)}
+                className="text-white/60 hover:text-white p-1 rounded-lg hover:bg-white/10 transition"
+                aria-label="Close menu"
+              >
+                <X className="h-4 w-4" />
+              </button>
             </div>
 
             {/* Category Series Tabs: Taranath Tantrik & Sherlock Holmes */}
@@ -196,7 +205,7 @@ function TransportControls({
                     : "text-white/70 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                তারাণাথ তান্ত্রিক
+                তারাণাথ (20)
               </button>
               <button
                 type="button"
@@ -207,12 +216,12 @@ function TransportControls({
                     : "text-white/70 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                শার্লক হোমস্‌
+                শার্লক হোমস্‌ (18)
               </button>
             </div>
 
             {/* Story List under selected Series */}
-            <div className="max-h-48 overflow-y-auto flex flex-col gap-1 py-1">
+            <div className="max-h-52 overflow-y-auto flex flex-col gap-1 py-1 pr-1">
               {filteredTracks.map((track) => {
                 const originalIndex = tracks.findIndex((t) => t.id === track.id);
                 const isSelected = originalIndex === currentTrackIndex;
@@ -251,25 +260,23 @@ function TransportControls({
         <span>10s</span>
       </button>
 
-      {/* Play / Pause — hidden on mobile since it's already in the main row */}
-      {!isMobile && (
-        <button
-          onClick={onTogglePlay}
-          type="button"
-          aria-label={isPlaying ? "Pause" : "Play"}
-          className="flex h-11 w-11 items-center justify-center rounded-full text-white ring-1 ring-white/25 transition hover:scale-105 active:scale-95 shadow-lg"
-          style={{
-            background: `linear-gradient(135deg, ${accentColor}, #d97706)`,
-            boxShadow: `0 4px 16px ${accentColor}60`,
-          }}
-        >
-          {isPlaying ? (
-            <Pause className="h-5 w-5 fill-current" />
-          ) : (
-            <Play className="h-5 w-5 fill-current translate-x-0.5" />
-          )}
-        </button>
-      )}
+      {/* Play / Pause */}
+      <button
+        onClick={onTogglePlay}
+        type="button"
+        aria-label={isPlaying ? "Pause" : "Play"}
+        className="flex h-11 w-11 items-center justify-center rounded-full text-white ring-1 ring-white/25 transition hover:scale-105 active:scale-95 shadow-lg"
+        style={{
+          background: `linear-gradient(135deg, ${accentColor}, #d97706)`,
+          boxShadow: `0 4px 16px ${accentColor}60`,
+        }}
+      >
+        {isPlaying ? (
+          <Pause className="h-5 w-5 fill-current" />
+        ) : (
+          <Play className="h-5 w-5 fill-current translate-x-0.5" />
+        )}
+      </button>
 
       {/* 10 Seconds Fast Forward (+10s) */}
       <button
@@ -402,9 +409,11 @@ export function NostalgiaPlayer({
     const initPlayer = () => {
       if (!window.YT || !window.YT.Player) return;
 
+      const slotElement = document.getElementById("youtube-player-slot-mobile") || document.getElementById("youtube-player-slot");
+      const targetSlotId = slotElement ? slotElement.id : "youtube-player-slot";
       const cleanVideoId = parseYouTubeId(currentTrack.videoId);
 
-      player = new window.YT.Player("youtube-player-slot", {
+      player = new window.YT.Player(targetSlotId, {
         videoId: cleanVideoId,
         playerVars: {
           autoplay: 1,
