@@ -131,7 +131,7 @@ export default function Home() {
     : currentBg;
 
   return (
-    <main className="relative flex min-h-dvh flex-1 flex-col items-center justify-between overflow-hidden select-none">
+    <main className="relative flex min-h-dvh flex-1 flex-col items-center justify-between overflow-hidden select-none pb-32 sm:pb-0">
       {/* Right Side Durga Puja Countdown Widget (Visible on Durga Pujo Playlist) */}
       <DurgaPujoCountdown isVisible={isDurgaPujo} />
 
@@ -158,19 +158,17 @@ export default function Home() {
       </div>
 
       {/* 1. Fixed Background Div (-z-20) with Dynamic Image Overlay */}
-      <div className="fixed inset-0 -z-20 overflow-hidden bg-black">
+      <div className="fixed inset-0 -z-20 overflow-hidden bg-black w-full h-full">
         {/* Layer 1: Ambient Soft Blurred Glow Backdrop */}
         <div
-          className="absolute inset-0 bg-cover bg-center blur-3xl scale-125 opacity-60 transition-all duration-700"
-          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')` } : undefined}
+          className="absolute inset-0 bg-center blur-3xl scale-125 opacity-60 transition-all duration-700"
+          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')`, backgroundSize: isSundaySuspense ? 'cover' : 'cover' } : { backgroundColor: '#000000' }}
         />
 
-        {/* Layer 2: Main Full Artwork (bg-cover for Durga Pujo edge-to-edge fill, bg-contain for Sunday Suspense) */}
+        {/* Layer 2: Main Full Artwork (bg-cover for all) */}
         <div
-          className={`absolute inset-0 bg-center transition-all duration-700 ${
-            isSundaySuspense ? "bg-contain bg-no-repeat" : "bg-cover"
-          }`}
-          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')` } : undefined}
+          className="absolute inset-0 bg-center transition-all duration-700 bg-cover bg-no-repeat"
+          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')` } : { backgroundColor: '#000000' }}
         />
 
         {/* Dark Vignette Overlay */}
