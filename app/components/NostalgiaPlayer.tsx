@@ -305,7 +305,7 @@ function PlaylistPicker({
   onSelectPlaylist,
 }: PlaylistPickerProps) {
   return (
-    <div className="mb-3 flex items-center justify-center gap-1.5 rounded-full border border-white/10 bg-black/40 p-1 backdrop-blur-md">
+    <div className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/60 p-1 backdrop-blur-xl shadow-lg">
       {playlists.map((pl) => {
         const isActive = pl.id === activePlaylistId;
         return (
@@ -512,7 +512,7 @@ export function NostalgiaPlayer({
   return (
     <div className="w-full max-w-xl flex flex-col items-center px-2 sm:px-0">
       {/* Playlist Selector Pill */}
-      <div className="w-full overflow-x-auto pb-2">
+      <div className="flex justify-center w-full pb-2">
         <PlaylistPicker
           playlists={PLAYLISTS}
           activePlaylistId={activePlaylist.id}
