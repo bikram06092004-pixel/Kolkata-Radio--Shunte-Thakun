@@ -560,35 +560,46 @@ export function NostalgiaPlayer({
       {/* ==========================================
           MOBILE VIEW (sm:hidden)
           ========================================== */}
-      <div className="sm:hidden glass-pill w-full rounded-[20px] p-3 flex flex-col gap-3 transition-all duration-300">
-        {/* Row 1: Vinyl + Title/Artist */}
-        <div className="flex items-start gap-2.5">
+      <div className="sm:hidden glass-pill w-full rounded-[20px] p-3 flex flex-col gap-2 transition-all duration-300">
+        {/* Row 1: Vinyl + Title/Artist + Play Button on right */}
+        <div className="flex items-center gap-2.5">
           <VinylDisc
             isPlaying={isPlaying}
             size="mobile"
             iframeContainerId="youtube-player-slot-mobile"
           />
 
-          <div className="min-w-0 flex-1 flex flex-col justify-between">
-            <div>
-              <h2 className="text-[14px] font-semibold text-white leading-tight line-clamp-2">
-                {currentTrack.title}
-              </h2>
-              <p className="text-[11px] text-white/70 leading-tight mt-1 line-clamp-1">
-                {currentTrack.artist}
+          <div className="min-w-0 flex-1 flex flex-col justify-center">
+            <h2 className="text-[13px] font-semibold text-white leading-tight line-clamp-2">
+              {currentTrack.title}
+            </h2>
+            <p className="text-[10px] text-white/70 leading-tight mt-0.5 line-clamp-1">
+              {currentTrack.artist}
+            </p>
+            {currentTrack.film && (
+              <p className="text-[9px] text-white/50 mt-0.5 line-clamp-1">
+                {currentTrack.film} • {currentTrack.year}
               </p>
-              {currentTrack.film && (
-                <p className="text-[10px] text-white/60 mt-0.5 line-clamp-1">
-                  {currentTrack.film}
-                </p>
-              )}
-            </div>
-            <div className="mt-1.5 flex items-center gap-1.5 text-[9px] font-mono text-amber-300/80 flex-wrap">
-              <span>{currentTrack.year}</span>
-              <span>•</span>
-              <span className="truncate">{activePlaylist.name}</span>
-            </div>
+            )}
           </div>
+
+          {/* Play/Pause button on the right side of text */}
+          <button
+            onClick={togglePlay}
+            type="button"
+            aria-label={isPlaying ? "Pause" : "Play"}
+            className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full text-white ring-1 ring-white/25 transition hover:scale-105 active:scale-95 shadow-lg"
+            style={{
+              background: `linear-gradient(135deg, ${accentColor}, #d97706)`,
+              boxShadow: `0 4px 16px ${accentColor}60`,
+            }}
+          >
+            {isPlaying ? (
+              <Pause className="h-4.5 w-4.5 fill-current" />
+            ) : (
+              <Play className="h-4.5 w-4.5 fill-current translate-x-0.5" />
+            )}
+          </button>
         </div>
 
         {/* Row 2: Seek Bar */}
@@ -601,23 +612,25 @@ export function NostalgiaPlayer({
           />
         </div>
 
-        {/* Row 3: Transport Controls - Compact */}
-        <div className="flex items-center justify-center gap-2 pt-1">
-          <div className="w-full flex items-center justify-center">
-            <TransportControls
-              isPlaying={isPlaying}
-              onTogglePlay={togglePlay}
-              currentTime={currentTime}
-              onSeek={handleSeek}
-              tracks={activePlaylist.tracks}
-              currentTrackIndex={trackIndex}
-              onSelectTrackIndex={(idx) => setTrackIndex(idx)}
-              isMobile={true}
-              accentColor={accentColor}
-              isSundaySuspense={isSundaySuspense}
-            />
+        {/* Row 3: Extra Transport Controls (only for Sunday Suspense with track selection/rewind/forward) */}
+        {isSundaySuspense && (
+          <div className="flex items-center justify-center gap-2 pt-0.5">
+            <div className="w-full flex items-center justify-center">
+              <TransportControls
+                isPlaying={isPlaying}
+                onTogglePlay={togglePlay}
+                currentTime={currentTime}
+                onSeek={handleSeek}
+                tracks={activePlaylist.tracks}
+                currentTrackIndex={trackIndex}
+                onSelectTrackIndex={(idx) => setTrackIndex(idx)}
+                isMobile={true}
+                accentColor={accentColor}
+                isSundaySuspense={isSundaySuspense}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -55,35 +55,26 @@ export function DurgaPujoCountdown({ isVisible, isMobile = false }: DurgaPujoCou
 
   if (!isVisible) return null;
 
-  // Mobile: inline centered widget below title
+  // Mobile: compact inline widget below title
   if (isMobile) {
     return (
       <aside
         aria-label="Durga Puja Countdown"
-        className="w-48 mx-auto rounded-2xl border border-amber-400/30 bg-black/65 p-2.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(245,158,11,0.15)] text-white select-none transition-all duration-500"
+        className="mx-auto rounded-xl border border-amber-400/30 bg-black/65 px-3 py-1.5 backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.6),0_0_12px_rgba(245,158,11,0.12)] text-white select-none transition-all duration-500"
       >
-        <div className="flex items-center justify-between pb-0.5 border-b border-amber-400/20 mb-1">
-          <span className="text-[10px] font-semibold text-amber-200/95 tracking-wide">
+        <div className="flex items-center gap-2.5">
+          <Sparkles className="h-3 w-3 text-amber-400 opacity-80 animate-pulse flex-shrink-0" />
+          <span className="text-[9px] font-semibold text-amber-200/90 tracking-wide">
             দুর্গাপূজার আর বাকি
           </span>
-          <Sparkles className="h-2.5 w-2.5 text-amber-400 opacity-80 animate-pulse flex-shrink-0" />
-        </div>
-
-        {greeting && (
-          <div className="mb-1 py-0.5 px-1.5 rounded-lg bg-gradient-to-r from-amber-500/25 to-red-500/25 border border-amber-400/40 text-center shadow-[0_0_12px_rgba(245,158,11,0.3)]">
-            <span className="gold-glossy-text text-xs font-bold tracking-wide">
-              {greeting}
+          <div className="flex items-baseline gap-1 rounded-lg bg-gradient-to-b from-white/10 to-white/5 border border-amber-400/20 px-2 py-0.5">
+            <span className="font-mono text-lg font-bold text-amber-300 tracking-tight drop-shadow-[0_1px_6px_rgba(245,158,11,0.4)] leading-none">
+              {daysLeft}
+            </span>
+            <span className="text-[9px] text-amber-100/90 font-medium">
+              দিন
             </span>
           </div>
-        )}
-
-        <div className="flex flex-col items-center justify-center rounded-xl bg-gradient-to-b from-white/10 to-white/5 border border-amber-400/20 py-2 px-2 text-center shadow-inner">
-          <span className="font-mono text-3xl font-bold text-amber-300 tracking-tight drop-shadow-[0_2px_10px_rgba(245,158,11,0.4)] leading-none">
-            {daysLeft}
-          </span>
-          <span className="text-[10px] text-amber-100/90 font-medium mt-0.5">
-            দিন
-          </span>
         </div>
       </aside>
     );
