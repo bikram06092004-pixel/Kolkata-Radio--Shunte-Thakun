@@ -84,10 +84,10 @@ export function DurgaPujoCountdown({ isVisible, isMobile = false }: DurgaPujoCou
   return (
     <aside
       aria-label="Durga Puja Countdown"
-      className="fixed left-8 top-24 z-20 w-52 rounded-2xl border border-amber-400/30 bg-black/65 p-3.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(245,158,11,0.15)] text-white select-none transition-all duration-500 animate-in fade-in slide-in-from-left-4 pointer-events-auto"
+      className="fixed left-6 bottom-6 z-20 w-52 rounded-2xl border border-amber-400/30 bg-black/65 p-3.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(245,158,11,0.15)] text-white select-none transition-all duration-500 animate-in fade-in slide-in-from-left-4 pointer-events-auto"
       style={{
         paddingLeft: "max(0.5rem, env(safe-area-inset-left))",
-        paddingTop: "max(1rem, env(safe-area-inset-top))",
+        paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))",
       }}
     >
       {/* 1. TOP HEADER WRITING: "দুর্গাপূজার আর বাকি" */}
