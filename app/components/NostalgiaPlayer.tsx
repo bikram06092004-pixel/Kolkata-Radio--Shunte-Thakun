@@ -499,13 +499,15 @@ export function NostalgiaPlayer({
   };
 
   return (
-    <div className="w-full max-w-xl flex flex-col items-center">
+    <div className="w-full max-w-xl flex flex-col items-center px-2 sm:px-0">
       {/* Playlist Selector Pill */}
-      <PlaylistPicker
-        playlists={PLAYLISTS}
-        activePlaylistId={activePlaylist.id}
-        onSelectPlaylist={handlePlaylistChange}
-      />
+      <div className="w-full overflow-x-auto pb-2">
+        <PlaylistPicker
+          playlists={PLAYLISTS}
+          activePlaylistId={activePlaylist.id}
+          onSelectPlaylist={handlePlaylistChange}
+        />
+      </div>
 
       {/* ==========================================
           DESKTOP VIEW (hidden sm:flex)
@@ -558,23 +560,30 @@ export function NostalgiaPlayer({
       {/* ==========================================
           MOBILE VIEW (sm:hidden)
           ========================================== */}
-      <div className="sm:hidden glass-pill w-full rounded-[26px] p-4 flex flex-col gap-3.5 transition-all duration-300">
+      <div className="sm:hidden glass-pill w-full rounded-[20px] p-3 flex flex-col gap-3 transition-all duration-300">
         {/* Row 1: Vinyl + Title/Artist */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-2.5">
           <VinylDisc
             isPlaying={isPlaying}
             size="mobile"
             iframeContainerId="youtube-player-slot-mobile"
           />
 
-          <div className="min-w-0 flex-1">
-            <h2 className="text-[15px] font-semibold text-white truncate leading-tight">
-              {currentTrack.title}
-            </h2>
-            <p className="text-[12.5px] text-white/70 truncate leading-tight mt-0.5">
-              {currentTrack.artist} {currentTrack.film ? `• ${currentTrack.film}` : ""}
-            </p>
-            <div className="mt-1 flex items-center gap-2 text-[10.5px] font-mono text-amber-300/80">
+          <div className="min-w-0 flex-1 flex flex-col justify-between">
+            <div>
+              <h2 className="text-[14px] font-semibold text-white leading-tight line-clamp-2">
+                {currentTrack.title}
+              </h2>
+              <p className="text-[11px] text-white/70 leading-tight mt-1 line-clamp-1">
+                {currentTrack.artist}
+              </p>
+              {currentTrack.film && (
+                <p className="text-[10px] text-white/60 mt-0.5 line-clamp-1">
+                  {currentTrack.film}
+                </p>
+              )}
+            </div>
+            <div className="mt-1.5 flex items-center gap-1.5 text-[9px] font-mono text-amber-300/80 flex-wrap">
               <span>{currentTrack.year}</span>
               <span>•</span>
               <span className="truncate">{activePlaylist.name}</span>
@@ -583,7 +592,7 @@ export function NostalgiaPlayer({
         </div>
 
         {/* Row 2: Seek Bar */}
-        <div className="w-full">
+        <div className="w-full px-1">
           <SeekBar
             currentTime={currentTime}
             duration={duration}
@@ -592,8 +601,8 @@ export function NostalgiaPlayer({
           />
         </div>
 
-        {/* Row 3: Transport Controls */}
-        <div className="flex items-center justify-between pt-1">
+        {/* Row 3: Transport Controls - Compact */}
+        <div className="flex items-center justify-center gap-2 pt-1">
           <div className="w-full flex items-center justify-center">
             <TransportControls
               isPlaying={isPlaying}

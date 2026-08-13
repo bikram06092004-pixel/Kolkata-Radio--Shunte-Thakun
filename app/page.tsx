@@ -137,22 +137,23 @@ export default function Home() {
 
       {/* Bottom-Left Corner: Made By + Instagram Link Button */}
       <div
-        className="fixed left-3 sm:left-6 bottom-3 sm:bottom-4 z-40 flex items-center gap-2 rounded-full border border-white/15 bg-black/65 px-3 py-1.5 backdrop-blur-md text-xs text-white/90 shadow-xl pointer-events-auto transition hover:border-pink-500/50 hover:bg-black/80"
+        className="fixed left-2 sm:left-6 bottom-20 sm:bottom-4 z-40 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/65 px-2.5 sm:px-3 py-1 sm:py-1.5 backdrop-blur-md text-[10px] sm:text-xs text-white/90 shadow-xl pointer-events-auto transition hover:border-pink-500/50 hover:bg-black/80 flex-wrap justify-center"
         style={{
-          paddingLeft: "max(0.75rem, env(safe-area-inset-left))",
-          paddingBottom: "max(0.375rem, env(safe-area-inset-bottom))",
+          paddingLeft: "max(0.5rem, env(safe-area-inset-left))",
+          paddingBottom: "max(0.25rem, env(safe-area-inset-bottom))",
         }}
       >
-        <span className="text-[11px] font-medium text-white/70">Made by</span>
+        <span className="text-[9px] sm:text-[11px] font-medium text-white/70">Made by</span>
         <a
           href="https://www.instagram.com/bikram_official011?igsh=MXVyZ3M4ZHdkYTJ4dg=="
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open Bikram Instagram Profile"
-          className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-2.5 py-0.5 text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition"
+          className="flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-2 sm:px-2.5 py-0.5 text-[9px] sm:text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition flex-shrink-0"
         >
-          <Instagram className="h-3.5 w-3.5" />
-          <span>bikram_official011</span>
+          <Instagram className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+          <span className="hidden sm:inline">bikram_official011</span>
+          <span className="sm:hidden">@bikram</span>
         </a>
       </div>
 
@@ -286,10 +287,10 @@ export default function Home() {
       </header>
 
       {/* Middle Tagline & Title Section */}
-      <div className="flex-1 flex flex-col items-center justify-start pt-20 sm:pt-28 text-center px-4 z-10 pointer-events-none max-w-lg">
+      <div className="flex-1 flex flex-col items-center justify-start pt-16 sm:pt-28 text-center px-3 sm:px-4 z-10 pointer-events-none max-w-full sm:max-w-lg">
         {/* Dynamic Time-Based Greeting Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/15 px-4 py-1 text-xs font-bold text-amber-300 backdrop-blur-md mb-2 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-          <Compass className="h-3.5 w-3.5 animate-spin text-amber-400" style={{ animationDuration: "12s" }} />
+        <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/15 px-3 sm:px-4 py-1 text-[11px] sm:text-xs font-bold text-amber-300 backdrop-blur-md mb-2 shadow-[0_0_15px_rgba(245,158,11,0.2)] flex-wrap justify-center">
+          <Compass className="h-3.5 w-3.5 animate-spin text-amber-400 flex-shrink-0" style={{ animationDuration: "12s" }} />
           <span>{greeting}</span>
         </div>
 
@@ -297,8 +298,8 @@ export default function Home() {
         {!isSundaySuspense ? (
           <>
             {/* Golden Glossy Metallic Title */}
-            <div className="relative overflow-visible pt-1 pb-0">
-              <h1 className="gold-glossy-text text-3xl sm:text-6xl font-bold tracking-wider pt-2 pb-0 px-3 overflow-visible inline-block whitespace-nowrap">
+            <div className="relative overflow-visible pt-0.5 sm:pt-1 pb-0">
+              <h1 className="gold-glossy-text text-2xl sm:text-6xl font-bold tracking-wider pt-1 sm:pt-2 pb-0 px-2 sm:px-3 overflow-visible inline-block">
                 কলকাতা রেডিও
               </h1>
               {/* Ambient Soft Golden Glow */}
@@ -306,14 +307,14 @@ export default function Home() {
             </div>
 
             {/* Subtitle placed closely under title */}
-            <p className="text-sm sm:text-base text-amber-100/80 mt-0 sm:mt-0.5 font-sans font-medium tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <p className="text-xs sm:text-base text-amber-100/80 mt-1 sm:mt-0.5 font-sans font-medium tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-2">
               শুনতে থাকুন আপনার পছন্দের গান
             </p>
           </>
         ) : (
-          <div className="mt-2 py-1 px-4 rounded-full border border-rose-500/40 bg-rose-950/40 backdrop-blur-md flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(225,29,72,0.25)]">
-            <Flame className="h-3.5 w-3.5 text-rose-400 animate-pulse" />
-            <span className="text-xs sm:text-sm font-semibold text-rose-200 tracking-wider">
+          <div className="mt-2 py-1 px-3 sm:px-4 rounded-full border border-rose-500/40 bg-rose-950/40 backdrop-blur-md flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(225,29,72,0.25)]">
+            <Flame className="h-3.5 w-3.5 text-rose-400 animate-pulse flex-shrink-0" />
+            <span className="text-[11px] sm:text-sm font-semibold text-rose-200 tracking-wider">
               Sunday সাসপেন্স • {activePlaylistId === "sherlock-holmes" ? "শার্লক হোমস্‌" : "তারাণাথ তান্ত্রিক"}
             </span>
           </div>
@@ -322,11 +323,11 @@ export default function Home() {
 
       {/* 4. Bottom-Anchored Player (max-w-xl) */}
       <footer
-        className="fixed bottom-0 left-0 right-0 z-30 flex flex-col items-center justify-center p-4 pointer-events-none"
+        className="fixed bottom-0 left-0 right-0 z-30 flex flex-col items-center justify-center p-3 sm:p-4 pointer-events-none w-full"
         style={{
-          paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
-          paddingLeft: "max(1rem, env(safe-area-inset-left))",
-          paddingRight: "max(1rem, env(safe-area-inset-right))",
+          paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
+          paddingLeft: "max(0.75rem, env(safe-area-inset-left))",
+          paddingRight: "max(0.75rem, env(safe-area-inset-right))",
         }}
       >
         <div className="pointer-events-auto w-full max-w-xl">

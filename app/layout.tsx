@@ -20,6 +20,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -29,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark h-full antialiased">
-      <body className="h-full bg-black font-sans text-white select-none overflow-hidden">
+      <body className="h-full w-full bg-black font-sans text-white select-none overflow-hidden overscroll-none">
         {children}
         <Analytics />
         <SpeedInsights />
