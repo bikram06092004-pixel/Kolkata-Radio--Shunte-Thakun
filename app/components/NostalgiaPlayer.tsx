@@ -305,17 +305,17 @@ function PlaylistPicker({
   onSelectPlaylist,
 }: PlaylistPickerProps) {
   return (
-    <div className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/60 p-1 backdrop-blur-xl shadow-lg">
+    <div className="flex items-center justify-center gap-2">
       {playlists.map((pl) => {
         const isActive = pl.id === activePlaylistId;
         return (
           <button
             key={pl.id}
             onClick={() => onSelectPlaylist(pl)}
-            className={`flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-semibold transition-all ${
+            className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-all backdrop-blur-md ${
               isActive
-                ? "bg-white/20 text-white shadow-sm ring-1 ring-white/30"
-                : "text-white/60 hover:bg-white/10 hover:text-white"
+                ? "bg-black/75 border border-amber-400/50 text-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.3)] scale-105"
+                : "bg-black/40 border border-white/15 text-white/70 hover:bg-black/60 hover:text-white hover:border-white/30"
             }`}
           >
             {pl.id === "sunday-suspense" ? (
