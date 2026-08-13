@@ -131,43 +131,21 @@ export default function Home() {
     : currentBg;
 
   return (
-    <main className="relative flex min-h-dvh flex-1 flex-col items-center justify-between overflow-hidden select-none pb-32 sm:pb-0">
-      {/* Right Side Durga Puja Countdown Widget (Visible on Durga Pujo Playlist) */}
-      <DurgaPujoCountdown isVisible={isDurgaPujo} />
+    <main className="relative flex min-h-dvh flex-1 flex-col items-center justify-between overflow-hidden select-none pb-44 sm:pb-0">
 
-      {/* Bottom-Left Corner: Made By + Instagram Link Button */}
-      <div
-        className="fixed right-2 sm:left-6 top-16 sm:bottom-auto sm:top-auto sm:bottom-4 z-40 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/65 px-2.5 sm:px-3 py-1 sm:py-1.5 backdrop-blur-md text-[9px] sm:text-xs text-white/90 shadow-xl pointer-events-auto transition hover:border-pink-500/50 hover:bg-black/80 flex-wrap justify-center"
-        style={{
-          paddingRight: "max(0.5rem, env(safe-area-inset-right))",
-          paddingTop: "max(1rem, env(safe-area-inset-top))",
-        }}
-      >
-        <span className="text-[8px] sm:text-[11px] font-medium text-white/70">Made by</span>
-        <a
-          href="https://www.instagram.com/bikram_official011?igsh=MXVyZ3M4ZHdkYTJ4dg=="
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Bikram Instagram Profile"
-          className="flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-1.5 sm:px-2.5 py-0.5 text-[8px] sm:text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition flex-shrink-0"
-        >
-          <Instagram className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
-          <span className="hidden sm:inline">bikram_official011</span>
-          <span className="sm:hidden">@bikram</span>
-        </a>
-      </div>
+
 
       {/* 1. Fixed Background Div (-z-20) with Dynamic Image Overlay */}
       <div className="fixed inset-0 -z-20 overflow-hidden bg-black w-full h-full">
         {/* Layer 1: Ambient Soft Blurred Glow Backdrop */}
         <div
-          className="absolute inset-0 bg-center blur-3xl scale-125 opacity-60 transition-all duration-700"
-          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')`, backgroundSize: isSundaySuspense ? 'cover' : 'cover' } : { backgroundColor: '#000000' }}
+          className="absolute inset-0 blur-3xl scale-125 opacity-60 transition-all duration-700"
+          style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')`, backgroundSize: 'cover', backgroundPosition: 'center' } : { backgroundColor: '#000000' }}
         />
 
-        {/* Layer 2: Main Full Artwork (bg-cover for all) */}
+        {/* Layer 2: Main Full Artwork (bg-cover for all) — mobile uses 35% 20% to keep Durga centered */}
         <div
-          className="absolute inset-0 bg-center transition-all duration-700 bg-cover bg-no-repeat"
+          className="absolute inset-0 transition-all duration-700 bg-cover bg-no-repeat mobile-bg-position"
           style={activeBgImage ? { backgroundImage: `url('${activeBgImage}')` } : { backgroundColor: '#000000' }}
         />
 
@@ -317,6 +295,16 @@ export default function Home() {
             </span>
           </div>
         )}
+
+        {/* Durga Puja Countdown — inline on mobile, fixed on desktop */}
+        <div className="sm:hidden mt-3 pointer-events-auto">
+          <DurgaPujoCountdown isVisible={isDurgaPujo} isMobile={true} />
+        </div>
+      </div>
+
+      {/* Desktop-only fixed Durga Puja Countdown */}
+      <div className="hidden sm:block">
+        <DurgaPujoCountdown isVisible={isDurgaPujo} isMobile={false} />
       </div>
 
       {/* 4. Bottom-Anchored Player (max-w-xl) */}
@@ -336,6 +324,24 @@ export default function Home() {
             isMuted={isMuted}
             onToggleMute={() => setIsMuted((prev) => !prev)}
           />
+        </div>
+
+        {/* Made By + Instagram Link — directly under the player */}
+        <div
+          className="pointer-events-auto mt-2 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/65 px-2.5 sm:px-3 py-1 sm:py-1.5 backdrop-blur-md text-[9px] sm:text-xs text-white/90 shadow-xl transition hover:border-pink-500/50 hover:bg-black/80 flex-wrap justify-center"
+        >
+          <span className="text-[8px] sm:text-[11px] font-medium text-white/70">Made by</span>
+          <a
+            href="https://www.instagram.com/bikram_official011?igsh=MXVyZ3M4ZHdkYTJ4dg=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Bikram Instagram Profile"
+            className="flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-1.5 sm:px-2.5 py-0.5 text-[8px] sm:text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition flex-shrink-0"
+          >
+            <Instagram className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
+            <span className="hidden sm:inline">bikram_official011</span>
+            <span className="sm:hidden">@bikram</span>
+          </a>
         </div>
       </footer>
     </main>

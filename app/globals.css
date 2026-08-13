@@ -44,6 +44,17 @@ html, body {
   }
 }
 
+/* Mobile background positioning: keep Durga Thakur centered on portrait screens */
+.mobile-bg-position {
+  background-position: center;
+}
+
+@media (max-width: 639px) {
+  .mobile-bg-position {
+    background-position: 35% 20%;
+  }
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
