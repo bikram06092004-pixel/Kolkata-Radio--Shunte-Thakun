@@ -177,7 +177,7 @@ function TransportControls({
 
         {/* Floating Music / Golpo Choice Dropdown */}
         {showTrackMenu && (
-          <div className="absolute right-0 bottom-full mb-2 z-50 flex flex-col gap-2 rounded-2xl border border-white/15 bg-black/90 p-2.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.9)] w-72 text-xs animate-in fade-in slide-in-from-bottom-2">
+          <div className="absolute left-0 sm:right-0 sm:left-auto bottom-full mb-2 z-50 flex flex-col gap-2 rounded-2xl border border-white/15 bg-black/90 p-2.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.9)] w-[calc(100vw-3rem)] sm:w-72 max-w-72 text-xs animate-in fade-in slide-in-from-bottom-2">
             <div className="flex items-center justify-between px-1 py-1 border-b border-white/10 font-bold text-amber-300 text-[11px]">
               <div className="flex items-center gap-1">
                 <BookOpen className="h-3.5 w-3.5 text-amber-400" />
@@ -251,23 +251,25 @@ function TransportControls({
         <span>10s</span>
       </button>
 
-      {/* Play / Pause */}
-      <button
-        onClick={onTogglePlay}
-        type="button"
-        aria-label={isPlaying ? "Pause" : "Play"}
-        className="flex h-11 w-11 items-center justify-center rounded-full text-white ring-1 ring-white/25 transition hover:scale-105 active:scale-95 shadow-lg"
-        style={{
-          background: `linear-gradient(135deg, ${accentColor}, #d97706)`,
-          boxShadow: `0 4px 16px ${accentColor}60`,
-        }}
-      >
-        {isPlaying ? (
-          <Pause className="h-5 w-5 fill-current" />
-        ) : (
-          <Play className="h-5 w-5 fill-current translate-x-0.5" />
-        )}
-      </button>
+      {/* Play / Pause — hidden on mobile since it's already in the main row */}
+      {!isMobile && (
+        <button
+          onClick={onTogglePlay}
+          type="button"
+          aria-label={isPlaying ? "Pause" : "Play"}
+          className="flex h-11 w-11 items-center justify-center rounded-full text-white ring-1 ring-white/25 transition hover:scale-105 active:scale-95 shadow-lg"
+          style={{
+            background: `linear-gradient(135deg, ${accentColor}, #d97706)`,
+            boxShadow: `0 4px 16px ${accentColor}60`,
+          }}
+        >
+          {isPlaying ? (
+            <Pause className="h-5 w-5 fill-current" />
+          ) : (
+            <Play className="h-5 w-5 fill-current translate-x-0.5" />
+          )}
+        </button>
+      )}
 
       {/* 10 Seconds Fast Forward (+10s) */}
       <button
