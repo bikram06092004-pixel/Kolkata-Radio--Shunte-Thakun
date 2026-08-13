@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent-amber: #f59e0b;
+  --color-accent-rose: #f43f5e;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-emerald: #10b981;
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer utilities {
+  .hero-bg {
+    background-image: url('/bg/scene-wide.png');
+  }
+}
+
+@media (orientation: portrait) {
+  .hero-bg {
+    background-image: url('/bg/scene-tall.png');
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-colon-blink {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vinyl-spin {
+  animation: vinyl-spin 8s linear infinite;
+}
+
+.gold-glossy-text {
+  background: linear-gradient(180deg, #fffbeb 0%, #fef08a 25%, #f59e0b 65%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 16px rgba(245, 158, 11, 0.45)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-bottom: 0em;
+  line-height: 1.15;
+}
+
+.glass-pill {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.055) 100%);
+  backdrop-filter: blur(40px) saturate(1.7);
+  -webkit-backdrop-filter: blur(40px) saturate(1.7);
+  box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+/* Custom scrollbars & slider styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.group:hover input[type="range"]::-webkit-slider-thumb,
+input[type="range"]:active::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.group:hover input[type="range"]::-moz-range-thumb,
+input[type="range"]:active::-moz-range-thumb {
+  opacity: 1;
+}
