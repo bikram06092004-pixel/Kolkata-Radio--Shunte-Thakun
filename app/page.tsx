@@ -137,21 +137,21 @@ export default function Home() {
 
       {/* Bottom-Left Corner: Made By + Instagram Link Button */}
       <div
-        className="fixed left-2 sm:left-6 bottom-20 sm:bottom-4 z-40 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/65 px-2.5 sm:px-3 py-1 sm:py-1.5 backdrop-blur-md text-[10px] sm:text-xs text-white/90 shadow-xl pointer-events-auto transition hover:border-pink-500/50 hover:bg-black/80 flex-wrap justify-center"
+        className="fixed right-2 sm:left-6 top-16 sm:bottom-auto sm:top-auto sm:bottom-4 z-40 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/65 px-2.5 sm:px-3 py-1 sm:py-1.5 backdrop-blur-md text-[9px] sm:text-xs text-white/90 shadow-xl pointer-events-auto transition hover:border-pink-500/50 hover:bg-black/80 flex-wrap justify-center"
         style={{
-          paddingLeft: "max(0.5rem, env(safe-area-inset-left))",
-          paddingBottom: "max(0.25rem, env(safe-area-inset-bottom))",
+          paddingRight: "max(0.5rem, env(safe-area-inset-right))",
+          paddingTop: "max(1rem, env(safe-area-inset-top))",
         }}
       >
-        <span className="text-[9px] sm:text-[11px] font-medium text-white/70">Made by</span>
+        <span className="text-[8px] sm:text-[11px] font-medium text-white/70">Made by</span>
         <a
           href="https://www.instagram.com/bikram_official011?igsh=MXVyZ3M4ZHdkYTJ4dg=="
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open Bikram Instagram Profile"
-          className="flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-2 sm:px-2.5 py-0.5 text-[9px] sm:text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition flex-shrink-0"
+          className="flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 px-1.5 sm:px-2.5 py-0.5 text-[8px] sm:text-[11.5px] font-bold text-white shadow-md hover:scale-105 active:scale-95 transition flex-shrink-0"
         >
-          <Instagram className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+          <Instagram className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
           <span className="hidden sm:inline">bikram_official011</span>
           <span className="sm:hidden">@bikram</span>
         </a>
